@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: fct_comics
+    columns:
+      - name: fct_comic_id
+        description: Unique id of table
+        data_type: uuid
+        constraints:
+          - type: not_null
+          - type: primary_key
+        test:
+          - unique
+          - not_null
+
+      - name: comic_id
+        description: Comic number
+        data_type: int
+        constraints:
+          - type: not_null
+        test:
+          - not_null
+          - unique
+
+      - name: cost
+        description: Comic cost
+        data_type: int
+        constraints:
+          - type: not_null
+        test:
+          - not_null
+
+      - name: views
+        description: Comic views
+        data_type: int
+        constraints:
+          - type: not_null
+        test:
+          - not_null
+
+      - name: reviews
+        description: Comic review score
+        data_type: decimal
+        constraints:
+          - type: not_null
+        test:
+          - not_null
+
+      - name: created_at
+        description: Date time of when record was created
+        data_type: datetime
+        constraints:
+          - type: not_null
+        test:
+          - not_null

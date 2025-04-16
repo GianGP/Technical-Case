@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_comics
+    columns:
+      - name: comic_id
+        description: Comic number
+        data_type: int
+        constraints:
+          - type: not_null
+          - type: primary_key
+          - type: check
+            expression: "id > 0"
+        tests:
+          - unique
+          - not_null
+
+      - name: title
+        description: Comic title
+        data_type: text
+        tests:
+          - not_null
+          - unique
+
+      - name: alt_text
+        description: Alternative text for the comic
+        data_type: text
+
+      - name: safe_title
+        description: Comic title without special characters
+        data_type: text
+ 
+      - name: transcript
+        description: Comic transcript
+        data_type: text
+
+      - name: image_url
+        description: Comic image URL
+        data_type: text
+
+      - name: released_date
+        description: Comic released date
+        data_type: date
