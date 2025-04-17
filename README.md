@@ -29,7 +29,7 @@ comic_number = int(Variable.get("comic_number", default_var=0)) + 1
 The DAG is configured to run every monday, wednesday and friday at 6 am. If you want to trigger the automation at another time, change the `start_date` parameter in the `default_args` dict.
 
 ## Data transformation
-Set up your `profiles.yml` to connect to your PostgreSQL dadatabase.
+Set up your `profiles.yml` to connect to your PostgreSQL database.
 
 The airflow implementation is configured to trigger also the dbt transformations.
 
