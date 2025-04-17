@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash import BashOperator
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.sensors.python import PythonSensor
 from airflow.models import Variable
@@ -166,6 +167,18 @@ with DAG(
         task_id='update_variable',
         python_callable=set_current_comic_number
     )
+    
+    # Run dbt models after ingestion
+    run_dbt = BashOperator(
+        task_id='run_dbt_models',
+        bash_command='cd {{var.value.dbt_project_path}} && dbt run',
+    )
+
+    # Test dbt models after execution
+    test_dbt = BashOperator(
+        task_id='test_dbt_models',
+        bash_command='cd {{var.value.dbt_project_path}} && dbt test',
+    )
 
     # Set execution order
-    retrieve_comic_number >> wait_for_api >> get_data >> create_table >> insert_data >> update_variable
+    retrieve_comic_number >> wait_for_api >> get_data >> create_table >> insert_data >> update_variable >> run_dbt >> test_dbt
