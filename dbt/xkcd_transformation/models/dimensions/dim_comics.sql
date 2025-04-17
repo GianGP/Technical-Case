@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 SELECT      (data ->> 'num')::int as comic_id
             ,data ->> 'title' as title
             ,data ->> 'alt' as alt
