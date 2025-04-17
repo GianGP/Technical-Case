@@ -9,7 +9,7 @@ models:
         constraints:
           - type: not_null
           - type: primary_key
-        test:
+        tests:
           - unique
           - not_null
 
@@ -18,7 +18,7 @@ models:
         data_type: int
         constraints:
           - type: not_null
-        test:
+        tests:
           - not_null
           - unique
 
@@ -27,7 +27,7 @@ models:
         data_type: int
         constraints:
           - type: not_null
-        test:
+        tests:
           - not_null
 
       - name: views
@@ -35,7 +35,7 @@ models:
         data_type: int
         constraints:
           - type: not_null
-        test:
+        tests:
           - not_null
 
       - name: reviews
@@ -43,7 +43,7 @@ models:
         data_type: decimal
         constraints:
           - type: not_null
-        test:
+        tests:
           - not_null
 
       - name: created_at
@@ -51,5 +51,5 @@ models:
         data_type: datetime
         constraints:
           - type: not_null
-        test:
+        tests:
           - not_null
